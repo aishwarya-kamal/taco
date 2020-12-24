@@ -35,25 +35,5 @@ class CategoryListViewModel @ViewModelInject constructor(
             Timber.e(e)
         }
     }
-
-//    val getCategoryList = liveData(Dispatchers.IO) {
-//        try {
-////            emit()
-//            Timber.d("** tacoService category list - ${tacoService.getCategoryList()}")
-//            emit(tacoService.getCategoryList())
-//        } catch (e: Exception) {
-//            Timber.e(e)
-//        }
-//    }
-
-
-//    val getCategoryFoodListSize = liveData {
-//        try {
-//            emit(foodDao.getCategoryFoodList())
-//        } catch (e: Exception) {
-//            Timber.e(e)
-//        }
-//    }.map { "Loaded ${it.size} categories\nImplement a list view and show all category elements." }
-
 }
 

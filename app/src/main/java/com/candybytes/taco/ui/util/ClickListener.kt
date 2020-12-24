@@ -12,8 +12,3 @@ class ClickListener(val clickListener: (category: Category) -> Unit) {
 class FoodClickListener(val clickListener: (food: Food) -> Unit) {
     fun onClick(food: Food) = clickListener(food)
 }
-
-//
-//class FoodClickListener(val clickListener: (food: Food, nutrient: Nutrient?) -> Unit) {
-//    fun onClick(food: Food, nutrient: Nutrient) = clickListener(food, nutrient)
-//}

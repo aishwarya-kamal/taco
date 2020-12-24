@@ -21,11 +21,6 @@ class SearchFoodFragment : Fragment() {
     private lateinit var viewModel: SearchFoodViewModel
     private lateinit var binding: FragmentSearchFoodBinding
 
-    //    private val adapter = SearchFoodAdapter(FoodClickListener { food: Food, nutrient: Nutrient? ->
-//        this.findNavController().navigate(
-//            SearchFoodFragmentDirections.actionSearchFoodFragmentToFoodFragment2(food, nutrient)
-//        )
-//    })
     private val adapter = SearchFoodAdapter(FoodClickListener { food: Food ->
         this.findNavController().navigate(
             SearchFoodFragmentDirections.actionSearchFoodFragmentToFoodFragment2(food)
@@ -69,13 +64,9 @@ class SearchFoodFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 if (p0 != null) {
-//                    binding.recyclerViewSearchFoodFragment.visibility = View.VISIBLE
                     currentWordToBeSearched = p0
                     searchFood(p0)
                 } else {
-//                    binding.noWallpapersText.visibility = View.VISIBLE
-//                    binding.recyclerViewSearchFoodFragment.visibility = View.GONE
-//                    binding.progressBar.visibility = View.GONE
                 }
                 return true
             }

@@ -40,28 +40,4 @@ class FoodViewModel @ViewModelInject constructor(
             Timber.e(e)
         }
     }
-
-//    fun insertFoodImage(foodImage: FoodImage) {
-//        viewModelScope.launch {
-//            foodImageDao.insertFoodImage(foodImage)
-//        }
-//    }
-//
-//    fun getFoodImage(foodId: Int) = foodImageDao.getFoodImage(foodId)
-
-
-//    fun createImageFile(): File? {
-//        val imageFileName = selectedDocumentTypeLD.value?.visibleName
-//        return try {
-//            val file = File(storageDir, "$imageFileName.jpg")
-//            if (file.createNewFile() || file.exists()) {
-//                file
-//            } else {
-//                null
-//            }
-//        } catch (ex: IOException) {
-//            ex.printStackTrace()
-//            null
-//        }
-//    }
 }

@@ -13,9 +13,7 @@ import com.candybytes.taco.vo.Food
 @Database(
     entities = [
         Category::class,
-        Food::class
-//        FoodImage::class
-               ],
+        Food::class],
     version = 1,
     exportSchema = true
 )

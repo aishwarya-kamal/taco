@@ -27,7 +27,6 @@ class NutrientAdapter(): ListAdapter<Nutrient, RecyclerView.ViewHolder>(Nutrient
 
         fun bind(item: Nutrient) {
             binding.apply {
-//                nutrientName =
                 nutrient = item
                 executePendingBindings()
             }

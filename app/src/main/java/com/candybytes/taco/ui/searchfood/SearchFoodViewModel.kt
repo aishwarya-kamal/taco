@@ -14,16 +14,6 @@ class SearchFoodViewModel @ViewModelInject constructor(
     private val repository: DefaultRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-//
-//    val info = liveData {
-//        try {
-//            val foods = foodDao.getFoodList()
-//            emit(foods)
-//        } catch (e: Exception) {
-//            Timber.e(e)
-//        }
-//    }.map { "Loaded ${it.size} foods" }
-
 
     fun getFilteredFoodList(query: String) = liveData {
         try {

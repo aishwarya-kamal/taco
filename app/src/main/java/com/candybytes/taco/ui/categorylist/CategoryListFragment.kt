@@ -26,14 +26,6 @@ class CategoryListFragment : Fragment() {
         )
     })
 
-//    private val observer = Observer<Resource<List<Category>>> {
-//        when (it.status) {
-//            Resource.Status.SUCCESS -> displayCategoryList(it.data)
-//            Resource.Status.ERROR -> displayError(it.message!!)
-//            Resource.Status.LOADING -> displayLoading()
-//        }
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
