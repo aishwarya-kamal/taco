@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Taco challenge</string>
+    <string name="menu_category">Category</string>
+    <string name="menu_search">Search</string>
+
+    <string name="nutrient_value">%s %s</string>
+</resources>

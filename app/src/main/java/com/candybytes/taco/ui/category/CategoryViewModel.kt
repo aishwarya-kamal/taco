@@ -1,0 +1,25 @@
+package com.candybytes.taco.ui.category
+
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import com.candybytes.taco.data.remote.api.TacoService
+import com.candybytes.taco.data.local.FoodDao
+import com.candybytes.taco.repository.DefaultRepository
+import timber.log.Timber
+
+class CategoryViewModel @ViewModelInject constructor(
+    private val repository: DefaultRepository,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
+
+    fun getCategoryFoodList(categoryId: Int) = liveData {
+        try {
+            emit(repository.getCategoryFoodList(categoryId))
+        } catch (e: Exception) {
+            Timber.e(e)
+        }
+    }
+}

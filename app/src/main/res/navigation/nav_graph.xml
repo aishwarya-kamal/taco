@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/categoryListFragment">
+
+    <fragment
+        android:id="@+id/categoryListFragment"
+        android:name="com.candybytes.taco.ui.categorylist.CategoryListFragment"
+        android:label="@string/menu_category"
+        tools:layout="@layout/fragment_category_list" >
+        <action
+            android:id="@+id/action_categoryListFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFoodFragment"
+        android:name="com.candybytes.taco.ui.searchfood.SearchFoodFragment"
+        android:label="@string/menu_search"
+        tools:layout="@layout/fragment_search_food" >
+        <action
+            android:id="@+id/action_searchFoodFragment_to_foodFragment2"
+            app:destination="@id/foodFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.candybytes.taco.ui.category.CategoryFragment"
+        android:label="Category Name"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_foodFragment"
+            app:destination="@id/foodFragment" />
+        <argument
+            android:name="category"
+            app:argType="com.candybytes.taco.vo.Category" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/foodFragment"
+        android:name="com.candybytes.taco.ui.food.FoodFragment"
+        android:label="Dish Name"
+        tools:layout="@layout/fragment_food" >
+        <action
+            android:id="@+id/action_foodFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <argument
+            android:name="FoodDetails"
+            app:argType="com.candybytes.taco.vo.Food" />
+<!--        <argument-->
+<!--            android:name="nutrient"-->
+<!--            app:argType="com.candybytes.taco.vo.Nutrient"-->
+<!--            app:nullable="true" />-->
+
+
+    </fragment>
+
+</navigation>
