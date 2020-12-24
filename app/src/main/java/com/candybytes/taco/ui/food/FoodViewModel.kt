@@ -5,14 +5,10 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
-import com.candybytes.taco.data.remote.api.TacoService
 import com.candybytes.taco.data.local.FoodDao
+import com.candybytes.taco.data.remote.api.TacoService
 import com.candybytes.taco.repository.DefaultRepository
-import com.candybytes.taco.ui.util.NUTRIENTS_LIST
-import com.candybytes.taco.vo.Nutrient
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class FoodViewModel @ViewModelInject constructor(
