@@ -18,6 +18,7 @@ import com.candybytes.taco.BuildConfig
 import com.candybytes.taco.R
 import com.candybytes.taco.databinding.FragmentFoodBinding
 import com.candybytes.taco.ui.util.ImageUtils
+import com.candybytes.taco.ui.util.NUTRIENTS_LIST
 import com.candybytes.taco.vo.Category
 import com.candybytes.taco.vo.Nutrient
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,12 +26,6 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class FoodFragment : Fragment() {
-
-    private val nutrientsList = listOf("humidity", "Protein", "lipid", "cholesterol",
-        "carbohydrate", "fiber", "ashes", "calcium", "magnesium", "phosphorus", "iron", "sodium",
-        "potassium", "copper", "zinc", "retinol", "thiamine", "riboflavin", "pyridoxine", "niacin",
-        "energy", "manganese"
-    )
 
     private var nutrientsValue = mutableListOf<String>()
     private var nutrientsValueList = mutableListOf<Nutrient>()
@@ -57,10 +52,6 @@ class FoodFragment : Fragment() {
                     .fitCenter()
                     .error(R.drawable.ic_broken_image)
                     .into(binding.imageViewFragmentFood)
-//                viewModel.insertFoodImage(FoodImage(
-//                    binding.food!!.id,
-//                    imageUri.toString()
-//                ))
             }
         }
 
@@ -118,9 +109,9 @@ class FoodFragment : Fragment() {
             )
         }
 
-        viewModel.getFoodDetails(args.FoodDetails.id).observe(viewLifecycleOwner, { food ->
+        viewModel.getFoodDetails(args.FoodDetails.id).observe(viewLifecycleOwner, {
 
-            for (nutrient in nutrientsList){
+            for (nutrient in NUTRIENTS_LIST){
 
                 nutrientsValueList.add(
                     Nutrient(
@@ -129,10 +120,6 @@ class FoodFragment : Fragment() {
                     )
                 )
 
-                binding.nutrient = Nutrient(
-                    args.FoodDetails.nutrients[nutrient]?.unit.toString(),
-                    args.FoodDetails.nutrients[nutrient]?.qty.toString()
-                )
             }
 
             adapter.submitList(nutrientsValueList)

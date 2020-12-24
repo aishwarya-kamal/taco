@@ -38,9 +38,4 @@ interface TacoService {
         @Path("categoryId") categoryId: Int
     )
             : List<Food>
-//
-////    https://taco-food-api.herokuapp.com/api/v1/category/:categoryId
-//
-//    @GET("api/v1/category/:categoryId")
-//    suspend fun getCategory(@Path("categoryId") categoryId: Int): Category
 }

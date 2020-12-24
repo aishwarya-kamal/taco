@@ -15,11 +15,6 @@ class DefaultRepository @Inject constructor(
 
     override suspend fun getCategoryList(): List<Category> {
         return tacoService.getCategoryList()
-//        try {
-//            tacoService.getCategoryList()
-//        } catch (e: Exception) {
-//            Timber.e(e)
-//        }
     }
 
     override suspend fun getCategoryFoodTotalNumber(categoryId: Int) : Int {
@@ -60,7 +55,6 @@ class DefaultRepository @Inject constructor(
     override suspend fun getCategoryFoodList(categoryId: Int): List<Food> {
         var categoryFoodList = emptyList<Food>()
         try {
-//          categoryFoodList = tacoService.getCategoryFoodList(categoryId)
             categoryFoodList = foodDao.getFoodList().filter {
                 it.categoryId == categoryId
             }
