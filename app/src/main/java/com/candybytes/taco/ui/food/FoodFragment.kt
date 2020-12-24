@@ -75,7 +75,7 @@ class FoodFragment : Fragment() {
     private lateinit var viewModel: FoodViewModel
     private lateinit var binding: FragmentFoodBinding
     private lateinit var category: Category
-    private var adapter = NutrientAdapter()
+    private lateinit var adapter: NutrientAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,6 +92,10 @@ class FoodFragment : Fragment() {
         val args = FoodFragmentArgs.fromBundle(requireArguments())
 
         binding.food = args.FoodDetails
+
+        Timber.d("** yo ${args.FoodDetails.nutrients.keys}")
+
+        adapter = NutrientAdapter(args.FoodDetails.nutrients.keys.toList())
 
         binding.recyclerViewFragmentFood.adapter = adapter
 

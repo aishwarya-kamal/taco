@@ -8,7 +8,7 @@ import com.candybytes.taco.databinding.ItemFoodDetailBinding
 import com.candybytes.taco.ui.Nutrient.NutrientDiffCallback
 import com.candybytes.taco.vo.Nutrient
 
-class NutrientAdapter(): ListAdapter<Nutrient, RecyclerView.ViewHolder>(NutrientDiffCallback()) {
+class NutrientAdapter(var nutrientKeys: List<String>): ListAdapter<Nutrient, RecyclerView.ViewHolder>(NutrientDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return NutrientListViewHolder(
@@ -18,15 +18,16 @@ class NutrientAdapter(): ListAdapter<Nutrient, RecyclerView.ViewHolder>(Nutrient
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as NutrientListViewHolder).bind(getItem(position))
+        (holder as NutrientListViewHolder).bind(getItem(position), nutrientKeys.get(position))
     }
 
 
     class NutrientListViewHolder(private val binding: ItemFoodDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Nutrient) {
+        fun bind(item: Nutrient, nutrientKey: String) {
             binding.apply {
+                nutrientName = nutrientKey
                 nutrient = item
                 executePendingBindings()
             }
