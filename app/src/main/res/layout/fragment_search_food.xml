@@ -9,17 +9,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        tools:context=".club.ClubFragment"
-        android:fitsSystemWindows="true">
-
-        <!--        <ProgressBar-->
-        <!--            android:id="@+id/progress_bar_club_fragment"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="150dp"-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:visibility="gone" />-->
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_search_food_fragment"

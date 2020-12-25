@@ -50,7 +50,6 @@ class SearchFoodFragment : Fragment() {
         })
 
         setHasOptionsMenu(true)
-
         return binding.root
     }
 
@@ -72,6 +71,10 @@ class SearchFoodFragment : Fragment() {
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
+                if (p0 != null) {
+                    currentWordToBeSearched = p0
+                    searchFood(p0)
+                }
                 return true
             }
         })
@@ -95,4 +98,8 @@ class SearchFoodFragment : Fragment() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        currentWordToBeSearched?.let { searchFood(it) }
+    }
 }

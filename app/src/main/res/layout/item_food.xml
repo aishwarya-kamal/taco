@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <data>
+
         <variable
             name="food"
             type="com.candybytes.taco.vo.Food" />
@@ -15,54 +16,68 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:onClick="@{() -> foodClickListener.onClick(food)}">
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="12dp">
 
-        <!--
-           combine quantity and unit
-        -->
-        <TextView
-            android:id="@+id/qtyAndUnit"
-            style="?attr/textAppearanceCaption"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(food.baseQty) + ` ` + food.baseUnity}"
-            android:maxLines="2"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toStartOf="@id/food_id"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="100 g" />
+            android:layout_marginVertical="8dp"
+            android:onClick="@{() -> foodClickListener.onClick(food)}">
 
-        <!--
-           id of food element
-        -->
-        <TextView
-            android:id="@+id/food_id"
-            android:text="@{String.valueOf(food.id)}"
-            style="?attr/textAppearanceCaption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/qtyAndUnit"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="#1" />
+            <!--
+               combine quantity and unit
+            -->
+            <TextView
+                android:id="@+id/text_view_qty_unit_item_food"
+                style="?attr/textAppearanceCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:maxLines="2"
+                android:text="@{String.valueOf(food.baseQty) + ` ` + food.baseUnity}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@id/text_view_food_id_item_food"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="100 g" />
 
-        <!--
-           description of food
-        -->
-        <TextView
-            android:id="@+id/description"
-            style="?attr/textAppearanceBody1"
-            android:layout_width="wrap_content"
-            android:text="@{food.description}"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/qtyAndUnit"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Camarão, Rio Grande, grande, cru" />
+            <!--
+               id of food element
+            -->
+            <TextView
+                android:id="@+id/text_view_food_id_item_food"
+                style="?attr/textAppearanceCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:text="@{String.valueOf(food.id)}"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_view_qty_unit_item_food"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="#1" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--
+               description of food
+            -->
+            <TextView
+                android:id="@+id/text_view_description_item_food"
+                style="?attr/textAppearanceBody1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{food.description}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/text_view_qty_unit_item_food"
+                app:layout_constraintTop_toBottomOf="@id/text_view_qty_unit_item_food"
+                tools:text="Camarão, Rio Grande, grande, cru" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 </layout>
