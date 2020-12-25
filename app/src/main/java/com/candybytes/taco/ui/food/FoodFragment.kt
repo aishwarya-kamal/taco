@@ -61,6 +61,11 @@ class FoodFragment : Fragment() {
             binding.buttonCategoryFragmentFood.text = it.name
         })
 
+        viewModel.imageUri.observe(viewLifecycleOwner, {
+            Timber.d("** frag uri - ${it.toString()}")
+            viewModel.update(it.toString(), args.FoodDetails.id)
+        })
+
         binding.buttonCategoryFragmentFood.setOnClickListener {
             this.findNavController().navigate(
                 FoodFragmentDirections.actionFoodFragmentToCategoryFragment(
@@ -82,16 +87,6 @@ class FoodFragment : Fragment() {
             adapter.submitList(nutrientsValueList)
         })
 
-        if (ImageUtils.createImageFile(requireContext()) != null) {
-
-            Glide.with(requireContext())
-                .load(ImageUtils.createImageFile(requireContext()))
-                .placeholder(R.drawable.animation_loading)
-                .fitCenter()
-                .error(R.drawable.ic_broken_image)
-                .into(binding.imageViewFragmentFood)
-        }
-
         binding.fabAddPictureItemFoodDetail.setOnClickListener {
             onRequestCameraClick(callback = takePicture)
         }
@@ -108,12 +103,18 @@ class FoodFragment : Fragment() {
                 it
             )
             takePictureRegistration.launch(imageUri)
+            imageUri.let { imageUri ->
+                if (imageUri != null) {
+                    viewModel.setImageUri(imageUri)
+                }
+            }
         }
     }
 
     private val takePictureRegistration =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
             if (isSuccess) {
+                Timber.d("** imageuri $imageUri")
                 Glide.with(requireView().context)
                     .load(imageUri)
                     .placeholder(R.drawable.animation_loading)

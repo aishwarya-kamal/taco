@@ -45,5 +45,7 @@ data class Food(
      * List of nutrients
      */
     @SerializedName("attributes")
-    val nutrients:  HashMap<String, Nutrient> = hashMapOf()
+    val nutrients:  HashMap<String, Nutrient> = hashMapOf(),
+
+    val imageUri: String = ""
 ): Parcelable

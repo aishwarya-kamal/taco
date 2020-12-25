@@ -15,6 +15,12 @@ interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAsync(food: Food)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllFood(foodList: List<Food>)
+
+    @Query("UPDATE food SET imageUri=:imageUri WHERE id = :idPassed")
+    suspend fun update(imageUri: String, idPassed: Int)
+
     @Query("SELECT * FROM food")
     suspend fun getFoodList(): List<Food>
 

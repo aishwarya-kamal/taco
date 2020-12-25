@@ -24,7 +24,7 @@ interface TacoService {
     suspend fun getCategoryList(): List<Category>
 
     /**
-     * Request all available categories
+     * Request all food
      */
     @GET("api/v1/food")
     suspend fun getAllFoodList(): List<Food>

@@ -25,6 +25,7 @@ class SearchFoodViewModel @ViewModelInject constructor(
 
     val getFoodList = liveData {
         try {
+            Timber.d("** vm ${repository.getFoodList()}")
             emit(repository.getFoodList())
         } catch (e: Exception) {
             Timber.e(e)

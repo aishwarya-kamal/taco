@@ -20,6 +20,14 @@ class CategoryListViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    init {
+        viewModelScope.launch {
+            Timber.d("** Inserting all food")
+            repository.insertAllFood()
+            Timber.d("** Inserted all food: done")
+        }
+    }
+
     fun getCategoryFoodTotalNumber(categoryId: Int) = liveData(Dispatchers.IO) {
         try {
             emit(repository.getCategoryFoodTotalNumber(categoryId))

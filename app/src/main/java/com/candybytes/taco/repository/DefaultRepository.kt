@@ -16,7 +16,7 @@ class DefaultRepository @Inject constructor(
         return tacoService.getCategoryList()
     }
 
-    override suspend fun getCategoryFoodTotalNumber(categoryId: Int) : Int {
+    override suspend fun getCategoryFoodTotalNumber(categoryId: Int): Int {
         var foodList = emptyList<Food>()
         try {
             foodList = getFoodList().filter {
@@ -33,6 +33,7 @@ class DefaultRepository @Inject constructor(
         var foodList = emptyList<Food>()
         try {
             foodList = foodDao.getFoodList()
+            Timber.d("** repo $foodList")
         } catch (e: Exception) {
             Timber.e(e)
         }
@@ -65,6 +66,15 @@ class DefaultRepository @Inject constructor(
 
     override suspend fun getFoodDetails(foodId: Int): Food {
         return foodDao.getFoodDetails(foodId)
+    }
+
+    suspend fun insertAllFood() {
+        foodDao.insertAllFood(tacoService.getAllFoodList())
+    }
+
+    suspend fun update(imageUri: String, idPassed: Int) {
+        Timber.d("** repo imageuri update - $imageUri")
+        foodDao.update(imageUri, idPassed)
     }
 
 }

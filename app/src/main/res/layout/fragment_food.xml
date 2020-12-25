@@ -36,6 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="240dp"
             android:background="#F8F4EE"
+            app:imageUrl="@{food.imageUri}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
