@@ -19,9 +19,7 @@ class DefaultRepository @Inject constructor(
     override suspend fun getCategoryFoodTotalNumber(categoryId: Int): Int {
         var foodList = emptyList<Food>()
         try {
-            foodList = getFoodList().filter {
-                it.categoryId == categoryId
-            }
+            foodList = getCategoryFoodList(categoryId)
             Timber.d("** getCategoryFoodList - ${foodList.size}")
         } catch (e: Exception) {
             Timber.e(e)
@@ -33,7 +31,7 @@ class DefaultRepository @Inject constructor(
         var foodList = emptyList<Food>()
         try {
             foodList = foodDao.getFoodList()
-            Timber.d("** repo $foodList")
+            Timber.d("** repo total food list size ${foodList.size}")
         } catch (e: Exception) {
             Timber.e(e)
         }
@@ -55,9 +53,7 @@ class DefaultRepository @Inject constructor(
     override suspend fun getCategoryFoodList(categoryId: Int): List<Food> {
         var categoryFoodList = emptyList<Food>()
         try {
-            categoryFoodList = foodDao.getFoodList().filter {
-                it.categoryId == categoryId
-            }
+            categoryFoodList = foodDao.getCategoryFoodList(categoryId)
         } catch (e: Exception) {
             Timber.e(e)
         }

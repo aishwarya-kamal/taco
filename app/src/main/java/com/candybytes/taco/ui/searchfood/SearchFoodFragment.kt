@@ -20,13 +20,16 @@ class SearchFoodFragment : Fragment() {
 
     private lateinit var viewModel: SearchFoodViewModel
     private lateinit var binding: FragmentSearchFoodBinding
+    private lateinit var searchView: SearchView
+    private var currentWordToBeSearched: String? = null
 
     private val adapter = SearchFoodAdapter(FoodClickListener { food: Food ->
+        clearFocusAndCollapseSearchView()
+
         this.findNavController().navigate(
             SearchFoodFragmentDirections.actionSearchFoodFragmentToFoodFragment2(food)
         )
     })
-    private var currentWordToBeSearched: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +60,7 @@ class SearchFoodFragment : Fragment() {
         inflater.inflate(R.menu.search_menu, menu)
 
         val search = menu.findItem(R.id.search_bar)
-        val searchView = search.actionView as SearchView
+        searchView = search.actionView as SearchView
         searchView.queryHint = "Search food..."
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -80,14 +83,7 @@ class SearchFoodFragment : Fragment() {
         })
 
         searchView.setOnCloseListener {
-            // Hides keyboard
-            view?.hideKeyboard()
-
-            // Removes focus from searchView
-            searchView.clearFocus()
-
-            // After clicking cross (x), searchView bar collapses & goes back to original position
-            searchView.onActionViewCollapsed()
+            clearFocusAndCollapseSearchView()
             return@setOnCloseListener true
         }
     }
@@ -102,4 +98,16 @@ class SearchFoodFragment : Fragment() {
         super.onResume()
         currentWordToBeSearched?.let { searchFood(it) }
     }
+
+    private fun clearFocusAndCollapseSearchView() {
+        // Hides keyboard
+        view?.hideKeyboard()
+
+        // Removes focus from searchView
+        searchView.clearFocus()
+
+        // After clicking cross (x), searchView bar collapses & goes back to original position
+        searchView.onActionViewCollapsed()
+    }
+
 }

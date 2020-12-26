@@ -6,11 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.candybytes.taco.data.remote.api.TacoService
-import com.candybytes.taco.data.local.FoodDao
 import com.candybytes.taco.repository.DefaultRepository
-import com.candybytes.taco.vo.Category
-import com.candybytes.taco.vo.Food
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -22,14 +18,17 @@ class CategoryListViewModel @ViewModelInject constructor(
 
     init {
         viewModelScope.launch {
-            Timber.d("** Inserting all food")
-            repository.insertAllFood()
-            Timber.d("** Inserted all food: done")
+            if (repository.getFoodList().isEmpty()) {
+                Timber.d("** Inserting all food")
+                repository.insertAllFood()
+                Timber.d("** Inserted all food: done")
+            }
         }
     }
 
     fun getCategoryFoodTotalNumber(categoryId: Int) = liveData(Dispatchers.IO) {
         try {
+            Timber.d("** Category food - ${repository.getCategoryFoodTotalNumber(categoryId)}")
             emit(repository.getCategoryFoodTotalNumber(categoryId))
         } catch (e: Exception) {
             Timber.e(e)

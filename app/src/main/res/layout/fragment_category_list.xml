@@ -10,8 +10,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="32dp"
-        tools:context=".club.ClubFragment">
+        android:layout_marginBottom="45dp"
+        tools:context=".ui.categorylist.CategoryListFragment">
 
         <!--        <ProgressBar-->
         <!--            android:id="@+id/progress_bar_club_fragment"-->
@@ -24,11 +24,11 @@
             android:id="@+id/recycler_view_category_list_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="14dp"
             android:paddingEnd="12dp"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:spanCount="2"
-            tools:listitem="@layout/item_category" />
+            tools:listitem="@layout/item_category"/>
 
     </FrameLayout>
 </layout>
