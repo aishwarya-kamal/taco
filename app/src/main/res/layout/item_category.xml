@@ -16,6 +16,10 @@
         <variable
             name="viewModel"
             type="com.candybytes.taco.ui.categorylist.CategoryListViewModel" />
+
+        <!--        <variable-->
+        <!--            name="numberOfFood"-->
+        <!--            type="String" />-->
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -64,7 +68,7 @@
 
             <!--
             Async load the total amount of food items referenced in this category
-            -->
+                android:text="@{`Loaded ` + numberOfFood + ` food items`}" -->
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/message"

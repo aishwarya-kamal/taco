@@ -2,11 +2,9 @@ package com.candybytes.taco.ui.categorylist
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.candybytes.taco.repository.DefaultRepository
+import com.candybytes.taco.vo.Food
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -16,12 +14,19 @@ class CategoryListViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+//    private val _dataInserted = MutableLiveData<Boolean>()
+//    val dataInserted: LiveData<Boolean> = _dataInserted
+
     init {
         viewModelScope.launch {
+//            foodList()
             if (repository.getFoodList().isEmpty()) {
                 Timber.d("** Inserting all food")
                 repository.insertAllFood()
                 Timber.d("** Inserted all food: done")
+//                _dataInserted.value = true
+            } else {
+//                _dataInserted.value = true
             }
         }
     }
@@ -42,5 +47,11 @@ class CategoryListViewModel @ViewModelInject constructor(
             Timber.e(e)
         }
     }
+//
+//    fun foodList() {
+//        viewModelScope.launch {
+//            repository.getFoodList()
+//        }
+//    }
 }
 

@@ -10,4 +10,6 @@ interface IRepository {
     suspend fun getFilteredFoodList(query: String): List<Food>
     suspend fun getCategoryFoodList(categoryId: Int): List<Food>
     suspend fun getFoodDetails(foodId: Int): Food
+    suspend fun update(imageUri: String, idPassed: Int)
+    suspend fun insertAllFood()
 }

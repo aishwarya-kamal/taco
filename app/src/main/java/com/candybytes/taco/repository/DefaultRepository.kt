@@ -17,58 +17,52 @@ class DefaultRepository @Inject constructor(
     }
 
     override suspend fun getCategoryFoodTotalNumber(categoryId: Int): Int {
-        var foodList = emptyList<Food>()
-        try {
-            foodList = getCategoryFoodList(categoryId)
-            Timber.d("** getCategoryFoodList - ${foodList.size}")
+        return try {
+            val foods = foodDao.getCategoryFoodList(categoryId)
+            foods.size
         } catch (e: Exception) {
             Timber.e(e)
+            -1
         }
-        return foodList.size
     }
 
     override suspend fun getFoodList(): List<Food> {
-        var foodList = emptyList<Food>()
-        try {
-            foodList = foodDao.getFoodList()
-            Timber.d("** repo total food list size ${foodList.size}")
+        return try {
+            foodDao.getFoodList()
         } catch (e: Exception) {
             Timber.e(e)
+            emptyList()
         }
-        return foodList
     }
 
     override suspend fun getFilteredFoodList(query: String): List<Food> {
-        var filteredFoodList = emptyList<Food>()
-        try {
+        return try {
             val searchQuery = "%$query%"
-            filteredFoodList = foodDao.getFilteredFoodList(searchQuery)
-            Timber.d("filtered list * $filteredFoodList")
+            foodDao.getFilteredFoodList(searchQuery)
         } catch (e: Exception) {
             Timber.e(e)
+            emptyList()
         }
-        return filteredFoodList
     }
 
     override suspend fun getCategoryFoodList(categoryId: Int): List<Food> {
-        var categoryFoodList = emptyList<Food>()
-        try {
-            categoryFoodList = foodDao.getCategoryFoodList(categoryId)
+        return try {
+            foodDao.getCategoryFoodList(categoryId)
         } catch (e: Exception) {
             Timber.e(e)
+            emptyList()
         }
-        return categoryFoodList
     }
 
     override suspend fun getFoodDetails(foodId: Int): Food {
         return foodDao.getFoodDetails(foodId)
     }
 
-    suspend fun insertAllFood() {
+    override suspend fun insertAllFood() {
         foodDao.insertAllFood(tacoService.getAllFoodList())
     }
 
-    suspend fun update(imageUri: String, idPassed: Int) {
+    override suspend fun update(imageUri: String, idPassed: Int) {
         Timber.d("** repo imageuri update - $imageUri")
         foodDao.update(imageUri, idPassed)
     }

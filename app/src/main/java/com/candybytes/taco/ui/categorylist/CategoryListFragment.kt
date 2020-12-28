@@ -20,9 +20,9 @@ class CategoryListFragment : Fragment() {
     private lateinit var viewModel: CategoryListViewModel
 
     private lateinit var binding: FragmentCategoryListBinding
-    private val adapter = CategoryListAdapter(ClickListener {
+    private val adapter = CategoryListAdapter(ClickListener { category ->
         this.findNavController().navigate(
-            CategoryListFragmentDirections.actionCategoryListFragmentToCategoryFragment(it)
+            CategoryListFragmentDirections.actionCategoryListFragmentToCategoryFragment(category)
         )
     })
 
@@ -45,6 +45,11 @@ class CategoryListFragment : Fragment() {
         viewModel.getCategoryList.observe(viewLifecycleOwner, {
             Timber.d("** $it")
             adapter.submitList(it)
+//            it.forEach {
+//                viewModel.dataInserted.observe(viewLifecycleOwner, {
+//
+//                })
+//            }
         })
 
         return binding.root

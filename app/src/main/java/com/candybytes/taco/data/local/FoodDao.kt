@@ -28,7 +28,7 @@ interface FoodDao {
     suspend fun getFilteredFoodList(searchQuery: String): List<Food>
 
     @Query("SELECT * FROM food WHERE categoryId=:categoryId")
-     fun getCategoryFoodList(categoryId: Int): List<Food>
+    suspend fun getCategoryFoodList(categoryId: Int): List<Food>
 
     @Query("SELECT * FROM food WHERE id=:foodId")
     suspend fun getFoodDetails(foodId: Int): Food
