@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.candybytes.taco.databinding.ItemFoodDetailBinding
-import com.candybytes.taco.ui.Nutrient.NutrientDiffCallback
 import com.candybytes.taco.vo.Nutrient
 
 class NutrientAdapter(var nutrientKeys: List<String>): ListAdapter<Nutrient, RecyclerView.ViewHolder>(NutrientDiffCallback()) {

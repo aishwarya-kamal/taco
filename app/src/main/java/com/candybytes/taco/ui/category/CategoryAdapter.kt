@@ -3,7 +3,6 @@ package com.candybytes.taco.ui.category
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.candybytes.taco.databinding.ItemFoodBinding
 import com.candybytes.taco.ui.util.FoodClickListener
@@ -22,7 +21,6 @@ class CategoryAdapter(private val foodClickListener: FoodClickListener) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let { (holder as FoodListViewHolder).bind(foodClickListener, it) }
     }
-
 
     class FoodListViewHolder(private val binding: ItemFoodBinding) :
         RecyclerView.ViewHolder(binding.root) {

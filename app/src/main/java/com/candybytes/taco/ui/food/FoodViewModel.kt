@@ -4,7 +4,6 @@ import android.net.Uri
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.candybytes.taco.data.local.FoodDao
 import com.candybytes.taco.data.remote.api.TacoService
 import com.candybytes.taco.repository.DefaultRepository
 import kotlinx.coroutines.Dispatchers

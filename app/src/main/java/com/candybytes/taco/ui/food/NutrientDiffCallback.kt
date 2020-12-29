@@ -1,4 +1,4 @@
-package com.candybytes.taco.ui.Nutrient
+package com.candybytes.taco.ui.food
 
 import androidx.recyclerview.widget.DiffUtil
 import com.candybytes.taco.vo.Nutrient

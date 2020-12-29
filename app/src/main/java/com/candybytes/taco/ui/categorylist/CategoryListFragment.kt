@@ -45,11 +45,6 @@ class CategoryListFragment : Fragment() {
         viewModel.getCategoryList.observe(viewLifecycleOwner, {
             Timber.d("** $it")
             adapter.submitList(it)
-//            it.forEach {
-//                viewModel.dataInserted.observe(viewLifecycleOwner, {
-//
-//                })
-//            }
         })
 
         return binding.root

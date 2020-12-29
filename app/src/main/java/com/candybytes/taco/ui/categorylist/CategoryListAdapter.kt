@@ -19,7 +19,6 @@ class CategoryListAdapter(private val clickListener: ClickListener) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        (holder as CategoryListViewHolder).bind(clickListener, getItem(position), 12)
         (holder as CategoryListViewHolder).bind(clickListener, getItem(position))
     }
 
@@ -35,6 +34,5 @@ class CategoryListAdapter(private val clickListener: ClickListener) :
                 executePendingBindings()
             }
         }
-
     }
 }
