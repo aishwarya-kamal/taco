@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.candybytes.taco.R
 import com.candybytes.taco.databinding.FragmentCategoryBinding
 import com.candybytes.taco.ui.util.FoodClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -42,10 +45,12 @@ class CategoryFragment : Fragment() {
 
         binding.recyclerViewCategoryFragment.adapter = adapter
 
-        viewModel.getCategoryFoodList(args.category.id).observe(viewLifecycleOwner, {
-            Timber.d("** $it")
-            adapter.submitList(it)
-        })
+        lifecycleScope.launch {
+            viewModel.getCategoryFoodList(args.category.id).collectLatest {
+                Timber.d("** $it")
+                adapter.submitData(it)
+            }
+        }
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = args.category.name
 

@@ -17,15 +17,15 @@ class DefaultRepository @Inject constructor(
         return tacoService.getCategoryList()
     }
 
-    override suspend fun getCategoryFoodTotalNumber(categoryId: Int): Int {
-        return try {
-            val foods = foodDao.getCategoryFoodList(categoryId)
-            foods.size
-        } catch (e: Exception) {
-            Timber.e(e)
-            -1
-        }
-    }
+//    override suspend fun getCategoryFoodTotalNumber(categoryId: Int): Int {
+//        return try {
+//            val foods = foodDao.getCategoryFoodList(categoryId)
+//            foods.size
+//        } catch (e: Exception) {
+//            Timber.e(e)
+//            -1
+//        }
+//    }
 
     override fun getAllFood(): PagingSource<Int, Food> {
         return foodDao.getAllFood()
@@ -36,13 +36,8 @@ class DefaultRepository @Inject constructor(
         return foodDao.getFilteredFoodList(searchQuery)
     }
 
-    override suspend fun getCategoryFoodList(categoryId: Int): List<Food> {
-        return try {
-            foodDao.getCategoryFoodList(categoryId)
-        } catch (e: Exception) {
-            Timber.e(e)
-            emptyList()
-        }
+    override fun getCategoryFoodList(categoryId: Int): PagingSource<Int, Food> {
+        return foodDao.getCategoryFoodList(categoryId)
     }
 
     override suspend fun getFoodDetails(foodId: Int): Food {

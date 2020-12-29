@@ -68,7 +68,8 @@
 
             <!--
             Async load the total amount of food items referenced in this category
-                android:text="@{`Loaded ` + numberOfFood + ` food items`}" -->
+                android:text="@{`Loaded ` + numberOfFood + ` food items`}"
+                android:text="@{`Loaded ` + String.valueOf(viewModel.getCategoryFoodTotalNumber(category.id)) + ` food items`}"-->
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/message"
@@ -76,7 +77,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="@font/roboto"
-                android:text="@{`Loaded ` + String.valueOf(viewModel.getCategoryFoodTotalNumber(category.id)) + ` food items`}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/title"
                 app:layout_constraintTop_toBottomOf="@id/title"

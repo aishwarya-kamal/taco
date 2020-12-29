@@ -38,14 +38,17 @@ class CategoryListViewModel @ViewModelInject constructor(
 //        }
 //    }
 
-    fun getCategoryFoodTotalNumber(categoryId: Int) = liveData(Dispatchers.IO) {
-        try {
-            Timber.d("** Category food - ${repository.getCategoryFoodTotalNumber(categoryId)}")
-            emit(repository.getCategoryFoodTotalNumber(categoryId))
-        } catch (e: Exception) {
-            Timber.e(e)
-        }
-    }
+
+
+
+//    fun getCategoryFoodTotalNumber(categoryId: Int) = liveData(Dispatchers.IO) {
+//        try {
+//            Timber.d("** Category food - ${repository.getCategoryFoodTotalNumber(categoryId)}")
+//            emit(repository.getCategoryFoodTotalNumber(categoryId))
+//        } catch (e: Exception) {
+//            Timber.e(e)
+//        }
+//    }
 
     val getCategoryList = liveData(Dispatchers.IO) {
         try {
@@ -54,11 +57,5 @@ class CategoryListViewModel @ViewModelInject constructor(
             Timber.e(e)
         }
     }
-//
-//    fun foodList() {
-//        viewModelScope.launch {
-//            repository.getFoodList()
-//        }
-//    }
 }
 
