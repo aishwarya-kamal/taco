@@ -1,5 +1,6 @@
 package com.candybytes.taco.data.local
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -21,11 +22,14 @@ interface FoodDao {
     @Query("UPDATE food SET imageUri=:imageUri WHERE id = :idPassed")
     suspend fun update(imageUri: String, idPassed: Int)
 
+//    @Query("SELECT * FROM food")
+//    suspend fun getFoodList(): List<Food>
+
     @Query("SELECT * FROM food")
-    suspend fun getFoodList(): List<Food>
+    fun getAllFood(): PagingSource<Int, Food>
 
     @Query("SELECT * FROM food WHERE description LIKE :searchQuery")
-    suspend fun getFilteredFoodList(searchQuery: String): List<Food>
+    fun getFilteredFoodList(searchQuery: String): PagingSource<Int, Food>
 
     @Query("SELECT * FROM food WHERE categoryId=:categoryId")
     suspend fun getCategoryFoodList(categoryId: Int): List<Food>

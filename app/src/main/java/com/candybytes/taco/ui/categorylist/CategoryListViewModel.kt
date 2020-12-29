@@ -17,19 +17,26 @@ class CategoryListViewModel @ViewModelInject constructor(
 //    private val _dataInserted = MutableLiveData<Boolean>()
 //    val dataInserted: LiveData<Boolean> = _dataInserted
 
+
     init {
         viewModelScope.launch {
-//            foodList()
-            if (repository.getFoodList().isEmpty()) {
-                Timber.d("** Inserting all food")
-                repository.insertAllFood()
-                Timber.d("** Inserted all food: done")
-//                _dataInserted.value = true
-            } else {
-//                _dataInserted.value = true
-            }
+            repository.insertAllFood()
         }
     }
+
+//    init {
+//        viewModelScope.launch {
+////            foodList()
+//            if (repository.getFoodList().isEmpty()) {
+//                Timber.d("** Inserting all food")
+//                repository.insertAllFood()
+//                Timber.d("** Inserted all food: done")
+////                _dataInserted.value = true
+//            } else {
+////                _dataInserted.value = true
+//            }
+//        }
+//    }
 
     fun getCategoryFoodTotalNumber(categoryId: Int) = liveData(Dispatchers.IO) {
         try {

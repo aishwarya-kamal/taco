@@ -49,7 +49,6 @@ dependencies {
 
     def nav_version = "2.3.2"
     def archLifecycleVersion = '1.1.1'
-    def room_version = "2.2.6"
 
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -69,9 +68,6 @@ dependencies {
     implementation "androidx.collection:collection-ktx:1.1.0"
     implementation "androidx.fragment:fragment-ktx:1.2.5"
     implementation "androidx.work:work-runtime-ktx:2.4.0"
-
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
 
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
@@ -98,7 +94,10 @@ dependencies {
 
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
-    kapt "androidx.room:room-compiler:$room_version"
+
+    implementation "androidx.room:room-runtime:2.3.0-alpha04"
+    implementation "androidx.room:room-ktx:2.3.0-alpha04"
+    kapt "androidx.room:room-compiler:2.3.0-alpha04"
 
 
     api 'androidx.activity:activity-ktx:1.2.0-alpha07'
@@ -107,5 +106,9 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //paging3
+    implementation "androidx.paging:paging-runtime:3.0.0-alpha11"
+    implementation "androidx.paging:paging-runtime-ktx:3.0.0-alpha11"
 
 }

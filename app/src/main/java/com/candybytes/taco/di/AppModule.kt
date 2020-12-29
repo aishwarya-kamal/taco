@@ -27,11 +27,6 @@ object AppModule {
         return foodDb.foodDao()
     }
 
-//    @Provides
-//    fun provideFoodImageDao(foodDb: FoodDb): FoodImageDao {
-//        return foodDb.foodImageDao()
-//    }
-
     /**
      * DB init
      */

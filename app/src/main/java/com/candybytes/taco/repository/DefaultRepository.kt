@@ -1,5 +1,6 @@
 package com.candybytes.taco.repository
 
+import androidx.paging.PagingSource
 import com.candybytes.taco.data.local.FoodDao
 import com.candybytes.taco.data.remote.api.TacoService
 import com.candybytes.taco.vo.Category
@@ -26,24 +27,24 @@ class DefaultRepository @Inject constructor(
         }
     }
 
-    override suspend fun getFoodList(): List<Food> {
-        return try {
-            foodDao.getFoodList()
-        } catch (e: Exception) {
-            Timber.e(e)
-            emptyList()
-        }
+    override fun getAllFood(): PagingSource<Int, Food> {
+        return foodDao.getAllFood()
     }
 
-    override suspend fun getFilteredFoodList(query: String): List<Food> {
-        return try {
-            val searchQuery = "%$query%"
-            foodDao.getFilteredFoodList(searchQuery)
-        } catch (e: Exception) {
-            Timber.e(e)
-            emptyList()
-        }
+    override fun getFilteredFoodList(query: String): PagingSource<Int, Food> {
+        val searchQuery = "%$query%"
+        return foodDao.getFilteredFoodList(searchQuery)
     }
+
+//    override suspend fun getFilteredFoodList(query: String): List<Food> {
+//        return try {
+//            val searchQuery = "%$query%"
+//            foodDao.getFilteredFoodList(searchQuery)
+//        } catch (e: Exception) {
+//            Timber.e(e)
+//            emptyList()
+//        }
+//    }
 
     override suspend fun getCategoryFoodList(categoryId: Int): List<Food> {
         return try {
@@ -63,7 +64,6 @@ class DefaultRepository @Inject constructor(
     }
 
     override suspend fun update(imageUri: String, idPassed: Int) {
-        Timber.d("** repo imageuri update - $imageUri")
         foodDao.update(imageUri, idPassed)
     }
 

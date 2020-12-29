@@ -6,14 +6,16 @@ import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.candybytes.taco.R
 import com.candybytes.taco.databinding.FragmentSearchFoodBinding
 import com.candybytes.taco.ui.util.FoodClickListener
-import com.candybytes.taco.ui.util.hideKeyboard
+import com.candybytes.taco.ui.util.clearFocusAndCollapseSearchView
 import com.candybytes.taco.vo.Food
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFoodFragment : Fragment() {
@@ -24,7 +26,7 @@ class SearchFoodFragment : Fragment() {
     private var currentWordToBeSearched: String? = null
 
     private val adapter = SearchFoodAdapter(FoodClickListener { food: Food ->
-        clearFocusAndCollapseSearchView()
+        clearFocusAndCollapseSearchView(view, searchView)
 
         this.findNavController().navigate(
             SearchFoodFragmentDirections.actionSearchFoodFragmentToFoodFragment2(food)
@@ -47,10 +49,17 @@ class SearchFoodFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(SearchFoodViewModel::class.java)
 
-        viewModel.getFoodList.observe(viewLifecycleOwner, {
-            Timber.d("** $it")
-            adapter.submitList(it)
-        })
+//        viewModel.getFoodList.observe(viewLifecycleOwner, {
+//            Timber.d("** $it")
+//            adapter.submitList(it)
+//        })
+
+        lifecycleScope.launch {
+            viewModel.allFood.collectLatest {
+                adapter.submitData(it)
+            }
+        }
+
 
         setHasOptionsMenu(true)
         return binding.root
@@ -83,31 +92,29 @@ class SearchFoodFragment : Fragment() {
         })
 
         searchView.setOnCloseListener {
-            clearFocusAndCollapseSearchView()
+            clearFocusAndCollapseSearchView(view, searchView)
             return@setOnCloseListener true
         }
     }
 
     private fun searchFood(query: String) {
-        viewModel.getFilteredFoodList(query).observe(viewLifecycleOwner, {
-            adapter.submitList(it)
-        })
+
+//        viewLifecycleOwner.lifecycleScope.launch {
+        lifecycleScope.launch {
+            viewModel.getFilteredFoodList(query).collectLatest {
+                adapter.submitData(it)
+            }
+        }
+
+//        viewModel.getFilteredFoodList(query).observe(viewLifecycleOwner, {
+////            adapter.submitList(it)
+//            adapter.submitData(it)
+//        })
     }
 
     override fun onResume() {
         super.onResume()
         currentWordToBeSearched?.let { searchFood(it) }
-    }
-
-    private fun clearFocusAndCollapseSearchView() {
-        // Hides keyboard
-        view?.hideKeyboard()
-
-        // Removes focus from searchView
-        searchView.clearFocus()
-
-        // After clicking cross (x), searchView bar collapses & goes back to original position
-        searchView.onActionViewCollapsed()
     }
 
 }
