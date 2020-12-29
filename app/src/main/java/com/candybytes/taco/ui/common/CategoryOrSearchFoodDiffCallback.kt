@@ -1,9 +1,9 @@
-package com.candybytes.taco.ui.searchfood
+package com.candybytes.taco.ui.common
 
 import androidx.recyclerview.widget.DiffUtil
 import com.candybytes.taco.vo.Food
 
-class SearchFoodDiffCallback : DiffUtil.ItemCallback<Food>() {
+class CategoryOrSearchFoodDiffCallback : DiffUtil.ItemCallback<Food>() {
     override fun areItemsTheSame(oldItem: Food, newItem: Food): Boolean {
         return oldItem.id == newItem.id
     }

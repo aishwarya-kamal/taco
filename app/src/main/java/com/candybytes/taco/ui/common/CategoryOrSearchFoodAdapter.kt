@@ -1,4 +1,4 @@
-package com.candybytes.taco.ui.searchfood
+package com.candybytes.taco.ui.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import com.candybytes.taco.databinding.ItemFoodBinding
 import com.candybytes.taco.ui.util.FoodClickListener
 import com.candybytes.taco.vo.Food
 
-class SearchFoodAdapter(private val foodClickListener: FoodClickListener) :
-    PagingDataAdapter<Food, RecyclerView.ViewHolder>(SearchFoodDiffCallback()) {
+class CategoryOrSearchFoodAdapter(private val foodClickListener: FoodClickListener) :
+    PagingDataAdapter<Food, RecyclerView.ViewHolder>(CategoryOrSearchFoodDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return FoodListViewHolder(
@@ -21,7 +21,6 @@ class SearchFoodAdapter(private val foodClickListener: FoodClickListener) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let { (holder as FoodListViewHolder).bind(foodClickListener, it) }
     }
-
 
     class FoodListViewHolder(private val binding: ItemFoodBinding) :
         RecyclerView.ViewHolder(binding.root) {

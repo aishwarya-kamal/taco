@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.candybytes.taco.R
 import com.candybytes.taco.databinding.FragmentSearchFoodBinding
+import com.candybytes.taco.ui.common.CategoryOrSearchFoodAdapter
 import com.candybytes.taco.ui.util.FoodClickListener
 import com.candybytes.taco.ui.util.clearFocusAndCollapseSearchView
 import com.candybytes.taco.vo.Food
@@ -25,7 +26,7 @@ class SearchFoodFragment : Fragment() {
     private lateinit var searchView: SearchView
     private var currentWordToBeSearched: String? = null
 
-    private val adapter = SearchFoodAdapter(FoodClickListener { food: Food ->
+    private val adapter = CategoryOrSearchFoodAdapter(FoodClickListener { food: Food ->
         clearFocusAndCollapseSearchView(view, searchView)
 
         this.findNavController().navigate(

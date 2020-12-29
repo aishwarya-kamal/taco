@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.candybytes.taco.R
 import com.candybytes.taco.databinding.FragmentCategoryBinding
+import com.candybytes.taco.ui.common.CategoryOrSearchFoodAdapter
 import com.candybytes.taco.ui.util.FoodClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -23,7 +24,7 @@ class CategoryFragment : Fragment() {
 
     private lateinit var viewModel: CategoryViewModel
     private lateinit var binding: FragmentCategoryBinding
-    private val adapter = CategoryAdapter(FoodClickListener {
+    private val adapter = CategoryOrSearchFoodAdapter(FoodClickListener {
         this.findNavController().navigate(
             CategoryFragmentDirections.actionCategoryFragmentToFoodFragment(it)
         )
