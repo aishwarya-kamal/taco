@@ -36,16 +36,6 @@ class DefaultRepository @Inject constructor(
         return foodDao.getFilteredFoodList(searchQuery)
     }
 
-//    override suspend fun getFilteredFoodList(query: String): List<Food> {
-//        return try {
-//            val searchQuery = "%$query%"
-//            foodDao.getFilteredFoodList(searchQuery)
-//        } catch (e: Exception) {
-//            Timber.e(e)
-//            emptyList()
-//        }
-//    }
-
     override suspend fun getCategoryFoodList(categoryId: Int): List<Food> {
         return try {
             foodDao.getCategoryFoodList(categoryId)

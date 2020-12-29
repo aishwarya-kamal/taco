@@ -49,17 +49,11 @@ class SearchFoodFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(SearchFoodViewModel::class.java)
 
-//        viewModel.getFoodList.observe(viewLifecycleOwner, {
-//            Timber.d("** $it")
-//            adapter.submitList(it)
-//        })
-
         lifecycleScope.launch {
             viewModel.allFood.collectLatest {
                 adapter.submitData(it)
             }
         }
-
 
         setHasOptionsMenu(true)
         return binding.root
@@ -73,19 +67,18 @@ class SearchFoodFragment : Fragment() {
         searchView.queryHint = "Search food..."
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                if (p0 != null) {
-                    currentWordToBeSearched = p0
-                    searchFood(p0)
-                } else {
+            override fun onQueryTextSubmit(foodQuery: String?): Boolean {
+                if (foodQuery != null) {
+                    currentWordToBeSearched = foodQuery
+                    searchFood(foodQuery)
                 }
                 return true
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                if (p0 != null) {
-                    currentWordToBeSearched = p0
-                    searchFood(p0)
+            override fun onQueryTextChange(foodQuery: String?): Boolean {
+                if (foodQuery != null) {
+                    currentWordToBeSearched = foodQuery
+                    searchFood(foodQuery)
                 }
                 return true
             }
@@ -99,17 +92,11 @@ class SearchFoodFragment : Fragment() {
 
     private fun searchFood(query: String) {
 
-//        viewLifecycleOwner.lifecycleScope.launch {
         lifecycleScope.launch {
             viewModel.getFilteredFoodList(query).collectLatest {
                 adapter.submitData(it)
             }
         }
-
-//        viewModel.getFilteredFoodList(query).observe(viewLifecycleOwner, {
-////            adapter.submitList(it)
-//            adapter.submitData(it)
-//        })
     }
 
     override fun onResume() {

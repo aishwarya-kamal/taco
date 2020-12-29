@@ -3,7 +3,6 @@ package com.candybytes.taco.ui.searchfood
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.candybytes.taco.databinding.ItemFoodBinding
 import com.candybytes.taco.ui.util.FoodClickListener
@@ -36,7 +35,6 @@ class SearchFoodAdapter(private val foodClickListener: FoodClickListener) :
         }
     }
 }
-
 
 
 //package com.candybytes.taco.ui.searchfood

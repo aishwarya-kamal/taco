@@ -10,6 +10,4 @@ class MainViewModel @ViewModelInject constructor(
 
     val showBottomBar = MutableLiveData(true)
 
-
-
 }

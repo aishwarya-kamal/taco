@@ -22,9 +22,6 @@ interface FoodDao {
     @Query("UPDATE food SET imageUri=:imageUri WHERE id = :idPassed")
     suspend fun update(imageUri: String, idPassed: Int)
 
-//    @Query("SELECT * FROM food")
-//    suspend fun getFoodList(): List<Food>
-
     @Query("SELECT * FROM food")
     fun getAllFood(): PagingSource<Int, Food>
 
