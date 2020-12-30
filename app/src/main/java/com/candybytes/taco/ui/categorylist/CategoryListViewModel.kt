@@ -35,5 +35,13 @@ class CategoryListViewModel @ViewModelInject constructor(
             Timber.e(e)
         }
     }
-}
 
+    fun getCategoryFoodListSize(categoryId: Int): Int {
+        return try {
+            repository.getCategoryFoodListSize(categoryId)
+        } catch (e: Exception) {
+            Timber.e(e)
+            -100
+        }
+    }
+}

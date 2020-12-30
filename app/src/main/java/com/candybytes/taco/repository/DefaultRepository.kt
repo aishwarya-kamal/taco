@@ -17,16 +17,6 @@ class DefaultRepository @Inject constructor(
         return tacoService.getCategoryList()
     }
 
-//    override suspend fun getCategoryFoodTotalNumber(categoryId: Int): Int {
-//        return try {
-//            val foods = foodDao.getCategoryFoodList(categoryId)
-//            foods.size
-//        } catch (e: Exception) {
-//            Timber.e(e)
-//            -1
-//        }
-//    }
-
     override fun getAllFood(): PagingSource<Int, Food> {
         return foodDao.getAllFood()
     }
@@ -50,6 +40,15 @@ class DefaultRepository @Inject constructor(
 
     override suspend fun update(imageUri: String, idPassed: Int) {
         foodDao.update(imageUri, idPassed)
+    }
+
+    override fun getCategoryFoodListSize(categoryId: Int): Int {
+        return try {
+            foodDao.getCategoryFoodListSize(categoryId).size
+        } catch (e: Exception) {
+            Timber.e(e)
+            -1
+        }
     }
 
 }

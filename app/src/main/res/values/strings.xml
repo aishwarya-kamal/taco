@@ -4,4 +4,7 @@
     <string name="menu_search">Search</string>
 
     <string name="nutrient_value">%s %s</string>
+    <string name="category_name">Category name</string>
+    <string name="add_food_image">Add food image</string>
+    <string name="food_image">Food image</string>
 </resources>

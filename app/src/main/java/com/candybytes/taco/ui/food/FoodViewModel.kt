@@ -25,11 +25,11 @@ class FoodViewModel @ViewModelInject constructor(
 
     fun getCategory(categoryId: Int) = liveData {
         try {
-            Timber.d("********** Category name in vm- ${tacoService.getCategory(categoryId)}")
+            Timber.d("*** Category name - ${tacoService.getCategory(categoryId)}")
             val category = tacoService.getCategory(categoryId)
             emit(category[0])
         } catch (e: Exception) {
-            Timber.d("********** Exeception ${e.message}")
+            Timber.d("*** Exeception ${e.message}")
             Timber.e(e)
         }
     }
@@ -44,7 +44,7 @@ class FoodViewModel @ViewModelInject constructor(
 
     fun update(uri: String, idPassed: Int) {
         viewModelScope.launch {
-            Timber.d("** vm imageuri update - $uri")
+            Timber.d("*** Imageuri update - $uri")
             repository.update(uri, idPassed)
         }
     }

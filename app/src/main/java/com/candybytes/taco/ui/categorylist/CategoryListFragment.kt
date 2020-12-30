@@ -43,7 +43,7 @@ class CategoryListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(CategoryListViewModel::class.java)
 
         viewModel.getCategoryList.observe(viewLifecycleOwner, {
-            Timber.d("** $it")
+            Timber.d("** Category List size ${it.size}")
             adapter.submitList(it)
         })
 

@@ -48,7 +48,6 @@ class CategoryFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.getCategoryFoodList(args.category.id).collectLatest {
-                Timber.d("** $it")
                 adapter.submitData(it)
             }
         }

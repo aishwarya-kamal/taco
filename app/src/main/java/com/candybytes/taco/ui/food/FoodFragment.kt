@@ -49,7 +49,7 @@ class FoodFragment : Fragment() {
 
         binding.food = args.FoodDetails
 
-        Timber.d("** yo ${args.FoodDetails.nutrients.keys}")
+        Timber.d("** Nutrient Keys ${args.FoodDetails.nutrients.keys}")
 
         adapter = NutrientAdapter(args.FoodDetails.nutrients.keys.toList())
 
@@ -62,7 +62,7 @@ class FoodFragment : Fragment() {
         })
 
         viewModel.imageUri.observe(viewLifecycleOwner, {
-            Timber.d("** frag uri - ${it.toString()}")
+            Timber.d("** Uri - ${it}")
             viewModel.update(it.toString(), args.FoodDetails.id)
         })
 
@@ -88,21 +88,22 @@ class FoodFragment : Fragment() {
         })
 
         binding.fabAddPictureItemFoodDetail.setOnClickListener {
-            onRequestCameraClick(callback = takePicture)
+            requestCamera(callback = captureFoodImage)
         }
 
         return binding.root
     }
 
 
-    private val takePicture: Runnable = Runnable {
-        ImageUtils.createImageFile(requireContext())?.also {
+    private val captureFoodImage: Runnable = Runnable {
+
+        ImageUtils.createFoodImageFile(requireContext())?.also {
             imageUri = FileProvider.getUriForFile(
                 requireContext(),
                 BuildConfig.APPLICATION_ID + ".fileprovider",
                 it
             )
-            takePictureRegistration.launch(imageUri)
+            captureFoodImageRegistration.launch(imageUri)
             imageUri.let { imageUri ->
                 if (imageUri != null) {
                     viewModel.setImageUri(imageUri)
@@ -111,9 +112,11 @@ class FoodFragment : Fragment() {
         }
     }
 
-    private val takePictureRegistration =
+    private val captureFoodImageRegistration =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
+
             if (isSuccess) {
+
                 Timber.d("** imageuri $imageUri")
                 Glide.with(requireView().context)
                     .load(imageUri)
@@ -124,18 +127,20 @@ class FoodFragment : Fragment() {
             }
         }
 
-    fun onRequestCameraClick(callback: Runnable? = null) {
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+    private fun requestCamera(callback: Runnable? = null) {
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { permissionGiven: Boolean ->
 
-            val message = if (isGranted) {
-                "Camera permission has been granted!"
+            val message = if (permissionGiven) {
+                "Permission to use Camera granted!"
             } else {
-                "Camera permission denied! :("
+                "No permission to use Camera!"
             }
 
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
-            if (isGranted) {
+            if (permissionGiven) {
                 callback?.run()
             }
         }.launch(Manifest.permission.CAMERA)

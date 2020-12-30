@@ -31,6 +31,9 @@ interface FoodDao {
     @Query("SELECT * FROM food WHERE categoryId = :categoryId")
     fun getCategoryFoodList(categoryId: Int): PagingSource<Int, Food>
 
-    @Query("SELECT * FROM food WHERE id=:foodId")
+    @Query("SELECT * FROM food WHERE categoryId = :categoryId")
+    fun getCategoryFoodListSize(categoryId: Int): List<Food>
+
+    @Query("SELECT * FROM food WHERE id = :foodId")
     suspend fun getFoodDetails(foodId: Int): Food
 }
