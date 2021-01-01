@@ -1,11 +1,12 @@
 package com.candybytes.taco.repository
 
 import androidx.paging.PagingSource
+import com.candybytes.taco.ui.util.Resource
 import com.candybytes.taco.vo.Category
 import com.candybytes.taco.vo.Food
 
 interface IRepository {
-    suspend fun getCategoryList(): List<Category>
+    suspend fun getCategoryList(): Resource<List<Category>>
     fun getCategoryFoodListSize(categoryId: Int) : Int
     fun getAllFood(): PagingSource<Int, Food>
     fun getFilteredFoodList(query: String): PagingSource<Int, Food>

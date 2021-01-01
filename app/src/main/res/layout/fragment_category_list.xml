@@ -13,12 +13,12 @@
         android:layout_marginBottom="45dp"
         tools:context=".ui.categorylist.CategoryListFragment">
 
-        <!--        <ProgressBar-->
-        <!--            android:id="@+id/progress_bar_club_fragment"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="150dp"-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:visibility="gone" />-->
+        <ProgressBar
+            android:id="@+id/progress_bar_category_list_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_category_list_fragment"
@@ -28,7 +28,19 @@
             android:paddingEnd="12dp"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="2"
-            tools:listitem="@layout/item_category"/>
+            tools:listitem="@layout/item_category" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_view_no_data_category_list_fragment"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/no_data"
+            android:visibility="gone" />
 
     </FrameLayout>
 </layout>

@@ -4,6 +4,7 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.candybytes.taco.repository.DefaultRepository
+import com.candybytes.taco.ui.util.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -29,11 +30,8 @@ class CategoryListViewModel @ViewModelInject constructor(
     }
 
     val getCategoryList = liveData(Dispatchers.IO) {
-        try {
-            emit(repository.getCategoryList())
-        } catch (e: Exception) {
-            Timber.e(e)
-        }
+        emit(Resource.loading(null))
+        emit(repository.getCategoryList())
     }
 
     fun getCategoryFoodListSize(categoryId: Int): Int {

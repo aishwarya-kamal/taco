@@ -3,6 +3,7 @@ package com.candybytes.taco.repository
 import androidx.paging.PagingSource
 import com.candybytes.taco.data.local.FoodDao
 import com.candybytes.taco.data.remote.api.TacoService
+import com.candybytes.taco.ui.util.Resource
 import com.candybytes.taco.vo.Category
 import com.candybytes.taco.vo.Food
 import timber.log.Timber
@@ -13,8 +14,12 @@ class DefaultRepository @Inject constructor(
     private val foodDao: FoodDao,
 ) : IRepository {
 
-    override suspend fun getCategoryList(): List<Category> {
-        return tacoService.getCategoryList()
+    override suspend fun getCategoryList(): Resource<List<Category>> {
+        return try {
+            Resource.success(tacoService.getCategoryList())
+        } catch (exception: Exception) {
+            return Resource.error(exception.message!!)
+        }
     }
 
     override fun getAllFood(): PagingSource<Int, Food> {

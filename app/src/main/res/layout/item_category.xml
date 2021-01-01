@@ -17,9 +17,6 @@
             name="viewModel"
             type="com.candybytes.taco.ui.categorylist.CategoryListViewModel" />
 
-        <!--        <variable-->
-        <!--            name="numberOfFood"-->
-        <!--            type="String" />-->
     </data>
 
     <com.google.android.material.card.MaterialCardView
