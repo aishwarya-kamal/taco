@@ -32,11 +32,11 @@
             android:layout_marginTop="28dp"
             android:fontFamily="@font/roboto"
             android:text="@{nutrientName}"
-            tools:text="Protein"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Protein" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_nutrient_value_item_food_detail"
@@ -44,13 +44,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/roboto"
-            android:textColor="@android:color/black"
             android:text="@{String.format(@string/nutrient_value, nutrient.qty, nutrient.unit)}"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
-            tools:text="2.56 g"
             app:layout_constraintBottom_toBottomOf="@+id/text_view_nutrient_name_item_food_detail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/text_view_nutrient_name_item_food_detail" />
+            app:layout_constraintTop_toTopOf="@+id/text_view_nutrient_name_item_food_detail"
+            tools:text="2.56 g" />
 
         <View
             android:layout_width="match_parent"

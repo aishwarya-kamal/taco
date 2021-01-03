@@ -77,6 +77,7 @@ class SearchFoodFragment : Fragment() {
                 }
                 return true
             }
+
             // Search food as query string changes
             override fun onQueryTextChange(foodQuery: String?): Boolean {
                 if (foodQuery != null) {

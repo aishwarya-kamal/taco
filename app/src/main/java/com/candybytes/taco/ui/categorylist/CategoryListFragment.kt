@@ -44,7 +44,8 @@ class CategoryListFragment : Fragment() {
     ): View {
 
         // Inflate the layout & get the instance of binding class
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category_list,
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_category_list,
             container, false
         )
 

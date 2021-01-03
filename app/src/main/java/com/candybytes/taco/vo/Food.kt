@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
 
 @Entity(tableName = "food")
 @Parcelize
@@ -45,7 +44,7 @@ data class Food(
      * List of nutrients
      */
     @SerializedName("attributes")
-    val nutrients:  HashMap<String, Nutrient> = hashMapOf(),
+    val nutrients: HashMap<String, Nutrient> = hashMapOf(),
 
     val imageUri: String = ""
-): Parcelable
+) : Parcelable

@@ -8,7 +8,6 @@
         <variable
             name="categoryId"
             type="Integer" />
-
     </data>
 
     <FrameLayout

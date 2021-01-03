@@ -28,26 +28,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav_graph" />
 
-        <!--        <com.google.android.material.appbar.AppBarLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content">-->
-
-        <!--            <androidx.appcompat.widget.Toolbar-->
-        <!--                android:id="@+id/toolbar"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="?attr/actionBarSize"-->
-        <!--                android:background="?attr/colorPrimaryVariant"-->
-        <!--                app:title="@string/app_name" />-->
-
-        <!--        </com.google.android.material.appbar.AppBarLayout>-->
-
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_bottom_bar"
-            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:fitsSystemWindows="true"
             app:goneUnless="@{viewModel.showBottomBar}"
             app:labelVisibilityMode="auto"
             app:layout_constraintBottom_toBottomOf="parent"

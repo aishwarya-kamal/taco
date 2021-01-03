@@ -16,4 +16,4 @@ data class Nutrient(
      */
     @SerializedName("qty")
     val qty: String = ""
-): Parcelable
+) : Parcelable

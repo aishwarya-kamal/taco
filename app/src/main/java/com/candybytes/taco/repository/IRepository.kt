@@ -7,7 +7,7 @@ import com.candybytes.taco.vo.Food
 
 interface IRepository {
     suspend fun getCategoryList(): Resource<List<Category>>
-    fun getCategoryFoodListSize(categoryId: Int) : Int
+    fun getCategoryFoodListSize(categoryId: Int): Int
     fun getAllFood(): PagingSource<Int, Food>
     fun getFilteredFoodList(query: String): PagingSource<Int, Food>
     fun getCategoryFoodList(categoryId: Int): PagingSource<Int, Food>

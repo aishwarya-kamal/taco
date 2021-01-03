@@ -34,7 +34,7 @@ interface TacoService {
      * Request all food from the specific category
      */
     @GET("api/v1/category/{categoryId}/food")
-     fun getCategoryFoodList(
+    fun getCategoryFoodList(
         @Path("categoryId") categoryId: Int
     ): List<Food>
 }

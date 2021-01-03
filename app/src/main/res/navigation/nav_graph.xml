@@ -9,7 +9,7 @@
         android:id="@+id/categoryListFragment"
         android:name="com.candybytes.taco.ui.categorylist.CategoryListFragment"
         android:label="@string/menu_category"
-        tools:layout="@layout/fragment_category_list" >
+        tools:layout="@layout/fragment_category_list">
         <action
             android:id="@+id/action_categoryListFragment_to_categoryFragment"
             app:destination="@id/categoryFragment"
@@ -21,19 +21,19 @@
         android:id="@+id/searchFoodFragment"
         android:name="com.candybytes.taco.ui.searchfood.SearchFoodFragment"
         android:label="@string/menu_search"
-        tools:layout="@layout/fragment_search_food" >
+        tools:layout="@layout/fragment_search_food">
         <action
             android:id="@+id/action_searchFoodFragment_to_foodFragment2"
             app:destination="@id/foodFragment"
             app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"/>
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.candybytes.taco.ui.category.CategoryFragment"
         android:label="Category Name"
-        tools:layout="@layout/fragment_category" >
+        tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_categoryFragment_to_foodFragment"
             app:destination="@id/foodFragment"
@@ -50,7 +50,7 @@
         android:id="@+id/foodFragment"
         android:name="com.candybytes.taco.ui.food.FoodFragment"
         android:label="Dish Name"
-        tools:layout="@layout/fragment_food" >
+        tools:layout="@layout/fragment_food">
         <action
             android:id="@+id/action_foodFragment_to_categoryFragment"
             app:destination="@id/categoryFragment"

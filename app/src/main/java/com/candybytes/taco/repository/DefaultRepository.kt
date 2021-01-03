@@ -14,6 +14,7 @@ class DefaultRepository @Inject constructor(
     private val foodDao: FoodDao,
 ) : IRepository {
 
+    // Gets list of categories
     override suspend fun getCategoryList(): Resource<List<Category>> {
         return try {
             Resource.success(tacoService.getCategoryList())
@@ -22,31 +23,38 @@ class DefaultRepository @Inject constructor(
         }
     }
 
+    // Gets all food from database
     override fun getAllFood(): PagingSource<Int, Food> {
         return foodDao.getAllFood()
     }
 
+    // Gets filtered food list based on query string
     override fun getFilteredFoodList(query: String): PagingSource<Int, Food> {
         val searchQuery = "%$query%"
         return foodDao.getFilteredFoodList(searchQuery)
     }
 
+    // Gets category food list from database
     override fun getCategoryFoodList(categoryId: Int): PagingSource<Int, Food> {
         return foodDao.getCategoryFoodList(categoryId)
     }
 
+    // Gets food details from database
     override suspend fun getFoodDetails(foodId: Int): Food {
         return foodDao.getFoodDetails(foodId)
     }
 
+    // Inserts all food into the database
     override suspend fun insertAllFood() {
         foodDao.insertAllFood(tacoService.getAllFoodList())
     }
 
+    // Updates the food
     override suspend fun update(imageUri: String, idPassed: Int) {
         foodDao.update(imageUri, idPassed)
     }
 
+    // Gets category food list size
     override fun getCategoryFoodListSize(categoryId: Int): Int {
         return try {
             foodDao.getCategoryFoodListSize(categoryId).size

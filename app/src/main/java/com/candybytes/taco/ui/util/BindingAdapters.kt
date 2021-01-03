@@ -7,7 +7,6 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.candybytes.taco.R
-import timber.log.Timber
 
 @BindingAdapter("goneUnless")
 fun goneUnless(view: View?, visible: Boolean?) {

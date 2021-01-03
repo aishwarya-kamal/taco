@@ -22,4 +22,4 @@ data class Category(
      */
     @SerializedName("category")
     val name: String = ""
-): Parcelable
+) : Parcelable
