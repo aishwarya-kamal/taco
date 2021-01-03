@@ -8,6 +8,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.candybytes.taco.repository.DefaultRepository
 
+// CategoryViewModel provides [Flow]<PagingData> of foods
 class CategoryViewModel @ViewModelInject constructor(
     private val repository: DefaultRepository,
     @Assisted private val savedStateHandle: SavedStateHandle
@@ -15,8 +16,10 @@ class CategoryViewModel @ViewModelInject constructor(
 
     fun getCategoryFoodList(categoryId: Int) = Pager(
         PagingConfig(
+            // Number of items per page
             pageSize = 20,
             enablePlaceholders = true,
+            // Maximum number of food items PagedList should hold in memory
             maxSize = 200
         )
     ) {

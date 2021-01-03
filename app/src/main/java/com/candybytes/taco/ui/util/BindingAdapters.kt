@@ -14,11 +14,10 @@ fun goneUnless(view: View?, visible: Boolean?) {
     view?.visibility = if (visible == true) View.VISIBLE else View.GONE
 }
 
+// Displays food image on the image view
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUri: String?) {
 
-    Timber.d("* imgUri String - $imgUri")
-    Timber.d("* imgUri uri - ${imgUri?.toUri()}")
     if (imgUri != null) {
         Glide.with(imgView.context)
             .load(imgUri.toUri())

@@ -68,6 +68,8 @@ class SearchFoodFragment : Fragment() {
         searchView.queryHint = "Search food..."
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            // Search food when user hits the search
             override fun onQueryTextSubmit(foodQuery: String?): Boolean {
                 if (foodQuery != null) {
                     currentWordToBeSearched = foodQuery
@@ -75,7 +77,7 @@ class SearchFoodFragment : Fragment() {
                 }
                 return true
             }
-
+            // Search food as query string changes
             override fun onQueryTextChange(foodQuery: String?): Boolean {
                 if (foodQuery != null) {
                     currentWordToBeSearched = foodQuery
@@ -91,6 +93,7 @@ class SearchFoodFragment : Fragment() {
         }
     }
 
+    // Search food based on the query string
     private fun searchFood(query: String) {
 
         lifecycleScope.launch {

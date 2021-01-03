@@ -23,6 +23,7 @@ class FoodViewModel @ViewModelInject constructor(
         _imageUri.value = image
     }
 
+    // Get category
     fun getCategory(categoryId: Int) = liveData {
         try {
             Timber.d("*** Category name - ${tacoService.getCategory(categoryId)}")
@@ -34,6 +35,7 @@ class FoodViewModel @ViewModelInject constructor(
         }
     }
 
+    // Get food details
     fun getFoodDetails(foodId: Int) = liveData(Dispatchers.IO) {
         try {
             emit(repository.getFoodDetails(foodId))
@@ -42,6 +44,7 @@ class FoodViewModel @ViewModelInject constructor(
         }
     }
 
+    // To update a food item with imageUri
     fun update(uri: String, idPassed: Int) {
         viewModelScope.launch {
             Timber.d("*** Imageuri update - $uri")

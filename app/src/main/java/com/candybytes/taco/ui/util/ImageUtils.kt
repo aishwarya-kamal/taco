@@ -14,7 +14,7 @@ object ImageUtils {
     @Throws(IOException::class)
     fun createFoodImageFile(context: Context): File? {
 
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.UK)
             .format(Date())
         val storageDirectory: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
 

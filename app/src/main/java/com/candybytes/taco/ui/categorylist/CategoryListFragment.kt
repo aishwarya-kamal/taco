@@ -29,6 +29,7 @@ class CategoryListFragment : Fragment() {
         )
     })
 
+    // Creating an Observer which deals with various states
     private val observer = Observer<Resource<List<Category>>> {
         when (it.status) {
             Resource.Status.SUCCESS -> showCategoryList(it.data)
@@ -42,8 +43,8 @@ class CategoryListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_category_list,
+        // Inflate the layout & get the instance of binding class
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category_list,
             container, false
         )
 
@@ -53,26 +54,37 @@ class CategoryListFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(CategoryListViewModel::class.java)
 
+        /*
+        * Observe the getCategoryList LiveData by passing in viewLifecycleOwner as the
+        * LifecycleOwner and the observer. Latest value of liveData is received in Observer
+        * as an implicit parameter 'it'
+        * */
         viewModel.getCategoryList.observe(viewLifecycleOwner, observer)
 
         return binding.root
     }
 
 
+    // Displays list of categories
     private fun showCategoryList(categoryList: List<Category>?) {
         indicators(View.VISIBLE, View.GONE, View.GONE)
         adapter.submitList(categoryList)
     }
 
+    // It shows a progressBar to indicate the loading state
     private fun showLoading() {
         indicators(View.GONE, View.VISIBLE, View.GONE)
     }
 
+    // Function called when there is an error when requesting data from web
     private fun showError(message: String) {
         indicators(View.GONE, View.GONE, View.VISIBLE)
         Timber.d("*** Error message is - $message")
     }
 
+    /*
+    * Function to set the visibility of various views (recyclerView, progressBar, noDataTextView)
+    * */
     private fun indicators(
         recyclerViewVisibility: Int, progressBarVisibility: Int,
         textViewNoDataVisibility: Int

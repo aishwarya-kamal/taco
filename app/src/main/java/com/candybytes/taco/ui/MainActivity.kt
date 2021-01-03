@@ -54,9 +54,6 @@ class MainActivity : AppCompatActivity() {
             appBarConfiguration = AppBarConfiguration(navController.graph)
             challengeTimer()
 
-            //setup header and footer
-//            toolbar.setupWithNavController(navController, appBarConfiguration)
-
             setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
         }
 

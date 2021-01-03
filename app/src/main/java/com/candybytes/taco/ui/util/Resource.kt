@@ -1,6 +1,6 @@
 package com.candybytes.taco.ui.util
 
-
+// A generic class that contains data & its status
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
 
     enum class Status {

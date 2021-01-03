@@ -2,7 +2,10 @@ package com.candybytes.taco.ui.categorylist
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.candybytes.taco.repository.DefaultRepository
 import com.candybytes.taco.ui.util.Resource
 import kotlinx.coroutines.Dispatchers
@@ -14,26 +17,27 @@ class CategoryListViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _dataInserted = MutableLiveData<Boolean>()
-    val dataInserted: LiveData<Boolean> = _dataInserted
-
     init {
         viewModelScope.launch {
-            if (dataInserted.value == false) {
-                repository.insertAllFood()
-                Timber.d("** Data inserted...")
-                _dataInserted.value = true
-            } else {
-                Timber.d("** Data already inserted...")
-            }
+            repository.insertAllFood()
+            Timber.d("Data inserted...")
         }
     }
 
+    /*
+    * LiveData builder runs the coroutine on IO thread when it’s observed and exposes/emits the
+    * results through an immutable LiveData which are caught by its observers
+    * */
     val getCategoryList = liveData(Dispatchers.IO) {
+        // Emit loading
         emit(Resource.loading(null))
+
+        // Emits the results (internally calls LiveData.setValue())
         emit(repository.getCategoryList())
     }
 
+
+    // Gets the category food list size
     fun getCategoryFoodListSize(categoryId: Int): Int {
         return try {
             repository.getCategoryFoodListSize(categoryId)

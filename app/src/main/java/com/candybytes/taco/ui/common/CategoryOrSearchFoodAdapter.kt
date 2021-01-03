@@ -8,6 +8,7 @@ import com.candybytes.taco.databinding.ItemFoodBinding
 import com.candybytes.taco.ui.util.FoodClickListener
 import com.candybytes.taco.vo.Food
 
+// Common adapter for Category and Search food
 class CategoryOrSearchFoodAdapter(private val foodClickListener: FoodClickListener) :
     PagingDataAdapter<Food, RecyclerView.ViewHolder>(CategoryOrSearchFoodDiffCallback()) {
 

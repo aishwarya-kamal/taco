@@ -36,7 +36,7 @@ class FoodFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_food,
@@ -51,21 +51,25 @@ class FoodFragment : Fragment() {
 
         Timber.d("** Nutrient Keys ${args.FoodDetails.nutrients.keys}")
 
+        // Initialize the adapter by passing in nutrient keys as list
         adapter = NutrientAdapter(args.FoodDetails.nutrients.keys.toList())
 
         binding.recyclerViewFragmentFood.adapter = adapter
 
+        // Observe getCategory and set category name as button text
         viewModel.getCategory(args.FoodDetails.categoryId).observe(viewLifecycleOwner, {
             category = it
-            Timber.d("********** Category name on button- ${it.name}")
+            Timber.d("** Category name on button- ${it.name}")
             binding.buttonCategoryFragmentFood.text = it.name
         })
 
+        // Updates the food item to include imageUri
         viewModel.imageUri.observe(viewLifecycleOwner, {
             Timber.d("** Uri - ${it}")
             viewModel.update(it.toString(), args.FoodDetails.id)
         })
 
+        // Navigate to category fragment upon button click
         binding.buttonCategoryFragmentFood.setOnClickListener {
             this.findNavController().navigate(
                 FoodFragmentDirections.actionFoodFragmentToCategoryFragment(
@@ -74,6 +78,7 @@ class FoodFragment : Fragment() {
             )
         }
 
+        // Display list of nutrients values
         viewModel.getFoodDetails(args.FoodDetails.id).observe(viewLifecycleOwner, {
 
             for (nutrient in args.FoodDetails.nutrients.keys) {
@@ -87,6 +92,7 @@ class FoodFragment : Fragment() {
             adapter.submitList(nutrientsValueList)
         })
 
+        // Request camera on fab click
         binding.fabAddPictureItemFoodDetail.setOnClickListener {
             requestCamera(callback = captureFoodImage)
         }
@@ -95,6 +101,7 @@ class FoodFragment : Fragment() {
     }
 
 
+    // Capture and set the imageUri
     private val captureFoodImage: Runnable = Runnable {
 
         ImageUtils.createFoodImageFile(requireContext())?.also {
@@ -112,11 +119,11 @@ class FoodFragment : Fragment() {
         }
     }
 
+    // Take a picture and when it's successful set it on image view using Glide
     private val captureFoodImageRegistration =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
 
             if (isSuccess) {
-
                 Timber.d("** imageuri $imageUri")
                 Glide.with(requireView().context)
                     .load(imageUri)
@@ -127,6 +134,7 @@ class FoodFragment : Fragment() {
             }
         }
 
+    // Launch camera if permission granted
     private fun requestCamera(callback: Runnable? = null) {
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
